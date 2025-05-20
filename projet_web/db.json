@@ -3,7 +3,12 @@
     {
       "id": "1",
       "username": "Alice",
-      "watchlist": []
+      "watchlist": [
+        {
+          "id": 1,
+          "title": "The Matrix"
+        }
+      ]
     }
   ],
   "movies": [

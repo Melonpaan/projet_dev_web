@@ -1,7 +1,6 @@
-// src/components/Profile.jsx
 import { useState, useEffect } from "react";
 import { getUserById } from "../services/userService";
-import "./Profile.css"; // à créer si tu veux des styles
+import "./Profile.css"; 
 
 export default function Profile() {
   const userId = 1;
