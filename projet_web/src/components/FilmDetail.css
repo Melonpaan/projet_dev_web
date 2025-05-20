@@ -63,3 +63,28 @@
     height: auto;
   }
 }
+/* Section Synopsis */
+.film-synopsis {
+  max-width: 700px;
+  margin: 2rem auto;
+  text-align: left;
+}
+
+.film-synopsis h3 {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.film-synopsis p {
+  line-height: 1.6;
+  color: #ddd;
+}
+
+/* Date de sortie */
+.release-date {
+  font-style: italic;
+  color: #ccc;
+  margin-bottom: 1rem;
+}
+

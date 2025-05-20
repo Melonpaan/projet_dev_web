@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getMovieById } from "../services/movieService";
 import { getUserById, updateUserWatchlist } from "../services/userService";
+import Synopsis from "./Synopsis"; 
 import "./FilmDetail.css";
 
 export default function FilmDetail() {
@@ -42,7 +43,6 @@ export default function FilmDetail() {
       })
       .catch((err) => {
         console.error(err);
-        // pas de setError ici pour ne pas bloquer l'affichage du film
       });
   }, [id]);
 
@@ -71,12 +71,27 @@ export default function FilmDetail() {
   if (loading) return <p>Chargement du film…</p>;
   if (error) return <p className="error">{error}</p>;
 
+  // 5) Rendu principal
   return (
     <div className="film-detail">
       <Link to="/" className="back-link">
         ← Retour à l’accueil
       </Link>
+
       <h2>{movie.title}</h2>
+
+      {/* Date de sortie */}
+      {movie.release_date && (
+        <p className="release-date">
+          Sorti le{" "}
+          {new Date(movie.release_date).toLocaleDateString("fr-FR", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          })}
+        </p>
+      )}
+
       <img
         src={movie.posterUrl}
         alt={`Affiche de ${movie.title}`}
@@ -96,6 +111,9 @@ export default function FilmDetail() {
           ? "Retirer de ma watchlist"
           : "Ajouter à ma watchlist"}
       </button>
+
+      {/* Ajout du composant Synopsis */}
+      {movie.overview && <Synopsis text={movie.overview} />}
     </div>
   );
 }

@@ -1,26 +1,25 @@
 {
-  "users": [
-    {
-      "id": "1",
-      "username": "Alice",
-      "watchlist": [
-        {
-          "id": 1,
-          "title": "The Matrix"
-        }
-      ]
-    }
-  ],
   "movies": [
     {
       "id": "1",
       "title": "The Matrix",
-      "posterUrl": "https://image.tmdb.org/t/p/w300/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg"
+      "posterUrl": "https://image.tmdb.org/t/p/w300/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg",
+      "release_date": "1999-03-31",
+      "overview": "Un pirate informatique découvre la vérité sur la réalité et lutte contre des sentinelles..."
     },
     {
       "id": "2",
       "title": "The Dark Knight",
-      "posterUrl": "https://image.tmdb.org/t/p/w300/qJ2tW6WMUDux911r6m7haRef0WH.jpg"
+      "posterUrl": "https://image.tmdb.org/t/p/w300/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+      "release_date": "2008-07-18",
+      "overview": "Batman affronte le Joker, un criminel imprévisible semant le chaos à Gotham City..."
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "username": "Alice",
+      "watchlist": []
     }
   ]
 }
