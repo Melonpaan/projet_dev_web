@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { getAllMovies, searchMovies } from "../services/movieService";
 import "./FilmList.css";
 
 export default function FilmList() {
@@ -13,19 +14,11 @@ export default function FilmList() {
     setLoading(true);
     setError(null);
 
-    // si query vide, on prend tous les films, sinon on filtre avec ?q=
-    const url = query
-      ? `/api/movies?title_like=${encodeURIComponent(query)}`
-      : "/api/movies";
-    console.log("URL de recherche:", url);
+    const fetchFn = query ? () => searchMovies(query) : () => getAllMovies();
 
-    fetch(url)
-      .then((res) => {
-        if (!res.ok) throw new Error(`Erreur ${res.status}`);
-        return res.json();
-      })
+    fetchFn()
       .then((data) => {
-        setMovies(data || []);
+        setMovies(data);
         setLoading(false);
       })
       .catch((err) => {
@@ -36,7 +29,9 @@ export default function FilmList() {
   }, [query]);
 
   if (loading) return <p>Chargement des films...</p>;
-  if (error) return <p>{error}</p>;
+  if (error) return <p className="error">{error}</p>;
+  if (!loading && movies.length === 0)
+    return <p className="no-results">Aucun film trouvé pour « {query} »</p>;
 
   return (
     <>

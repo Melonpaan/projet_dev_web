@@ -1,24 +1,27 @@
+// src/components/FilmDetail.jsx
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import { getMovieById } from "../services/movieService";
+import { getUserById, updateUserWatchlist } from "../services/userService";
 import "./FilmDetail.css";
 
 export default function FilmDetail() {
   const { id } = useParams();
+  const userId = 1;
+
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
   const [userWatchlist, setUserWatchlist] = useState([]);
   const [isInWatchlist, setIsInWatchlist] = useState(false);
   const [toggleLoading, setToggleLoading] = useState(false);
   const [toggleError, setToggleError] = useState(null);
 
-  // 1) fetch du film
+  // 1) Charger les détails du film
   useEffect(() => {
-    fetch(`/api/movies/${id}`)
-      .then((res) => {
-        if (!res.ok) throw new Error(`Erreur ${res.status}`);
-        return res.json();
-      })
+    setLoading(true);
+    getMovieById(id)
       .then((data) => {
         setMovie(data);
         setLoading(false);
@@ -30,58 +33,45 @@ export default function FilmDetail() {
       });
   }, [id]);
 
-  // 2) fetch de la watchlist utilisateur
+  // 2) Charger la watchlist de l’utilisateur
   useEffect(() => {
-    fetch("/api/user")
-      .then((res) => {
-        if (!res.ok) throw new Error(res.status);
-        return res.json();
-      })
-      .then((data) => {
-        setUserWatchlist(data.watchlist || []);
-        setIsInWatchlist(data.watchlist.some((m) => String(m.id) === id));
+    getUserById(userId)
+      .then((user) => {
+        const list = user.watchlist || [];
+        setUserWatchlist(list);
+        setIsInWatchlist(list.some((m) => String(m.id) === id));
       })
       .catch((err) => {
         console.error(err);
+        // pas de setError ici pour ne pas bloquer l'affichage du film
       });
   }, [id]);
 
-  // 3) fonction de toggle watchlist
+  // 3) Basculer l’état watchlist
   function handleToggle() {
     setToggleLoading(true);
     setToggleError(null);
 
-    const newWatchlist = isInWatchlist
+    const newList = isInWatchlist
       ? userWatchlist.filter((m) => String(m.id) !== id)
       : [...userWatchlist, { id: Number(id), title: movie.title }];
 
-    fetch("/api/user", {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ watchlist: newWatchlist }),
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error(res.status);
-        return res.json();
-      })
-      .then((data) => {
-        setUserWatchlist(data.watchlist);
+    updateUserWatchlist(userId, newList)
+      .then((updatedUser) => {
+        setUserWatchlist(updatedUser.watchlist);
         setIsInWatchlist(!isInWatchlist);
       })
       .catch((err) => {
         console.error(err);
         setToggleError("Erreur lors de la mise à jour");
       })
-      .finally(() => {
-        setToggleLoading(false);
-      });
+      .finally(() => setToggleLoading(false));
   }
 
-  // 4) rendus conditionnels
+  // 4) États de rendu
   if (loading) return <p>Chargement du film…</p>;
-  if (error) return <p>{error}</p>;
+  if (error) return <p className="error">{error}</p>;
 
-  // 5) rendu principal
   return (
     <div className="film-detail">
       <Link to="/" className="back-link">
@@ -93,7 +83,7 @@ export default function FilmDetail() {
         alt={`Affiche de ${movie.title}`}
         className="detail-poster"
       />
-      {/* Plus tard : ajouter synopsis, date, bouton watchlist, etc. */}
+
       {toggleError && <p className="error">{toggleError}</p>}
 
       <button

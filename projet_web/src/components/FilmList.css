@@ -90,4 +90,10 @@
   margin: 0;
   font-weight: bold;
 }
+/* message quand la recherche ne renvoie aucun film */
+.no-results {
+  text-align: center;
+  font-style: italic;
+  margin-top: 2rem;
+}
 
