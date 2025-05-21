@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getMovieById } from "../services/movieService";
-import { getUserById, updateUserWatchlist } from "../services/userService";
+import { getUserById, toggleWatchlist } from "../services/userService";
+import { useAuth } from "../contexts/AuthContext";
 import Synopsis from "./Synopsis";
 import Trailer from "./Trailer";
 import FilmInfo from "./FilmInfo";
@@ -10,26 +11,26 @@ import "./FilmDetail.css";
 export default function FilmDetail() {
   const { id } = useParams();
   const userId = 1;
+  const { isAuthenticated } = useAuth();
 
-  const [movie, setMovie] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
+  const [movie, setMovie]               = useState(null);
+  const [loading, setLoading]           = useState(true);
+  const [error, setError]               = useState(null);
   const [userWatchlist, setUserWatchlist] = useState([]);
   const [isInWatchlist, setIsInWatchlist] = useState(false);
   const [toggleLoading, setToggleLoading] = useState(false);
-  const [toggleError, setToggleError] = useState(null);
+  const [toggleError, setToggleError]     = useState(null);
+  const [message, setMessage]             = useState(null);
 
   // 1) Charger les détails du film
   useEffect(() => {
     setLoading(true);
     getMovieById(id)
-      .then((data) => {
+      .then(data => {
         setMovie(data);
         setLoading(false);
       })
-      .catch((err) => {
-        console.error(err);
+      .catch(() => {
         setError("Impossible de charger le film");
         setLoading(false);
       });
@@ -38,40 +39,48 @@ export default function FilmDetail() {
   // 2) Charger la watchlist de l’utilisateur
   useEffect(() => {
     getUserById(userId)
-      .then((user) => {
+      .then(user => {
         const list = user.watchlist || [];
         setUserWatchlist(list);
-        setIsInWatchlist(list.some((m) => String(m.id) === id));
+        setIsInWatchlist(list.some(m => String(m.id) === id));
       })
-      .catch((err) => {
-        console.error(err);
-      });
+      .catch(() => {});
   }, [id]);
 
   // 3) Basculer l’état watchlist
-  function handleToggle() {
+  async function handleToggle() {
+    setMessage(null);
     setToggleLoading(true);
     setToggleError(null);
 
-    const newList = isInWatchlist
-      ? userWatchlist.filter((m) => String(m.id) !== id)
-      : [...userWatchlist, { id: Number(id), title: movie.title }];
+    // Sauvegarde l’état avant le toggle pour le message
+    const wasIn = isInWatchlist;
 
-    updateUserWatchlist(userId, newList)
-      .then((updatedUser) => {
-        setUserWatchlist(updatedUser.watchlist);
-        setIsInWatchlist(!isInWatchlist);
-      })
-      .catch((err) => {
-        console.error(err);
-        setToggleError("Erreur lors de la mise à jour");
-      })
-      .finally(() => setToggleLoading(false));
+    try {
+      const updated = await toggleWatchlist(userId, {
+        id: Number(id),
+        title: movie.title,
+      });
+
+      setUserWatchlist(updated.watchlist);
+      setIsInWatchlist(updated.watchlist.some(m => String(m.id) === id));
+
+      // Affiche un message selon l’action
+      setMessage(
+        wasIn
+          ? "Le film a été retiré de votre liste “À voir”."
+          : "Le film a été ajouté à votre liste “À voir”."
+      );
+    } catch {
+      setToggleError("Erreur lors de la mise à jour");
+    } finally {
+      setToggleLoading(false);
+    }
   }
 
   // 4) États de rendu
   if (loading) return <p>Chargement du film…</p>;
-  if (error) return <p className="error">{error}</p>;
+  if (error)   return <p className="error">{error}</p>;
 
   // 5) Rendu principal
   return (
@@ -81,8 +90,6 @@ export default function FilmDetail() {
       </Link>
 
       <h2>{movie.title}</h2>
-
-      {/* Date de sortie */}
       {movie.release_date && (
         <p className="release-date">
           Sorti le{" "}
@@ -93,7 +100,6 @@ export default function FilmDetail() {
           })}
         </p>
       )}
-
       <img
         src={movie.posterUrl}
         alt={`Affiche de ${movie.title}`}
@@ -101,22 +107,29 @@ export default function FilmDetail() {
       />
 
       {toggleError && <p className="error">{toggleError}</p>}
+      {message     && <p className="info">{message}</p>}
 
-      <button
-        onClick={handleToggle}
-        disabled={toggleLoading}
-        className="watchlist-btn"
-      >
-        {toggleLoading
-          ? "…"
-          : isInWatchlist
-          ? "Retirer de ma watchlist"
-          : "Ajouter à ma watchlist"}
-      </button>
+      {isAuthenticated ? (
+        <button
+          onClick={handleToggle}
+          disabled={toggleLoading}
+          className="watchlist-btn"
+        >
+          {toggleLoading
+            ? "…"
+            : isInWatchlist
+            ? "Retirer de ma watchlist"
+            : "Ajouter à ma watchlist"}
+        </button>
+      ) : (
+        <Link to="/login" className="watchlist-login-prompt">
+          Connectez-vous pour gérer votre liste
+        </Link>
+      )}
 
       <div className="detail-content">
         <div className="detail-main">
-          {movie.overview && <Synopsis text={movie.overview} />}
+          {movie.overview  && <Synopsis text={movie.overview} />}
           {movie.trailerUrl && <Trailer url={movie.trailerUrl} />}
         </div>
         <aside className="detail-sidebar">
@@ -132,3 +145,4 @@ export default function FilmDetail() {
     </div>
   );
 }
+

@@ -47,6 +47,15 @@
   outline: 2px solid #0056b3;
   outline-offset: 2px;
 }
+.watchlist-login-prompt {
+  display: block;
+  margin: 1rem auto;
+  color: #e50914;
+  text-decoration: none;
+}
+.watchlist-login-prompt:hover {
+  text-decoration: underline;
+}
 .film-detail h2 {
   margin-top: 0.5rem;
   margin-bottom: 1rem;

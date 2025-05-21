@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../services/authService";
+import { useAuth } from "../contexts/AuthContext";
 import "./Login.css";
 
 export default function Login() {
@@ -9,6 +10,7 @@ export default function Login() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -16,7 +18,8 @@ export default function Login() {
     setError(null);
 
     try {
-      await loginUser(email, password);
+      const { token } = await loginUser(email, password);
+      login(token);
       navigate("/profile");
     } catch (err) {
       setError(err.message);

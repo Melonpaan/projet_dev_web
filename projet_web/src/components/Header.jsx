@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 import "./Header.css";
 
 export default function Header({ onSearch }) {
+  const { isAuthenticated, logout } = useAuth();
   const [term, setTerm] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
@@ -40,9 +42,21 @@ export default function Header({ onSearch }) {
       <nav className="main-nav">
         <Link to="/">Accueil</Link>
         <Link to="/profile">Mes listes</Link>
-        <Link to="/login" className="login-btn">
-          Connexion
-        </Link>
+        {isAuthenticated ? (
+          <button
+            className="login-btn"
+            onClick={() => {
+              logout();
+              navigate("/login");
+            }}
+          >
+            Déconnexion
+          </button>
+        ) : (
+          <Link to="/login" className="login-btn">
+            Connexion
+          </Link>
+        )}
       </nav>
     </header>
   );

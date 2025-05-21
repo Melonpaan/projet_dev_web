@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getUserById, updateUserWatchlist, updateUserWatched } from "../services/userService";
+import {
+  getUserById,
+  toggleWatchlist,
+  markAsWatched,
+  removeFromWatchlist,
+  removeFromWatched,
+} from "../services/userService";
 import Tabs from "./Tabs";
 import "./Profile.css";
 
@@ -8,10 +14,12 @@ export default function Profile() {
   const userId = 1;
   const navigate = useNavigate();
 
-  const [user, setUser] = useState(null);
+  const [user, setUser]       = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError]     = useState(null);
+  const [message, setMessage] = useState(null);
 
+  // Chargement initial
   useEffect(() => {
     setLoading(true);
     getUserById(userId)
@@ -19,8 +27,7 @@ export default function Profile() {
         setUser(data);
         setLoading(false);
       })
-      .catch(err => {
-        console.error(err);
+      .catch(() => {
         setError("Impossible de charger le profil");
         setLoading(false);
       });
@@ -29,22 +36,56 @@ export default function Profile() {
   if (loading) return <p>Chargement du profil…</p>;
   if (error)   return <p className="error">{error}</p>;
 
-  const handleMarkWatched = movie => {
-    const newWatchlist = user.watchlist.filter(m => m.id !== movie.id);
-    const newWatched = [...user.watched, movie];
-    // Mettre à jour côté serveur
-    updateUserWatchlist(userId, newWatchlist).then(() => {});
-    updateUserWatched(userId, newWatched).then(updated => {
-      setUser(prev => ({ ...prev, watchlist: newWatchlist, watched: updated.watched }));
-    });
+  // 1) Marquer comme vu
+  const handleMarkWatched = async movie => {
+    try {
+      const updated = await markAsWatched(userId, movie);
+      setUser(updated);
+      setMessage("Le film a été marqué comme vu.");
+    } catch {
+      setError("Erreur lors de la mise à jour");
+    }
   };
 
-  const handleUnmarkWatched = movie => {
-    const newWatched = user.watched.filter(m => m.id !== movie.id);
-    // simple update
-    updateUserWatched(userId, newWatched).then(updated => {
-      setUser(prev => ({ ...prev, watched: updated.watched }));
-    });
+  // 2) Toggle watchlist (add / move / already)
+  const handleToggleWatchlist = async movie => {
+    setMessage(null);
+    try {
+      const { user: updated, status } = await toggleWatchlist(userId, movie);
+      setUser(updated);
+
+      if (status === "already") {
+        setMessage("Le film est déjà dans votre liste “À voir”.");
+      } else if (status === "moved") {
+        setMessage('Le film a été déplacé de "Vus" vers "À voir".');
+      } else {
+        setMessage("Le film a été ajouté à votre liste “À voir”.");
+      }
+    } catch {
+      setError("Erreur lors de la mise à jour");
+    }
+  };
+
+  // 3) Supprimer de la watchlist
+  const handleRemoveFromWatchlist = async movie => {
+    try {
+      const updated = await removeFromWatchlist(userId, movie);
+      setUser(updated);
+      setMessage("Le film a été retiré de votre liste “À voir”.");
+    } catch {
+      setError("Erreur lors de la suppression");
+    }
+  };
+
+  // 4) Supprimer de la liste « Vus »
+  const handleRemoveFromWatched = async movie => {
+    try {
+      const updated = await removeFromWatched(userId, movie);
+      setUser(updated);
+      setMessage("Le film a été retiré de votre liste “Vus”.");
+    } catch {
+      setError("Erreur lors de la suppression");
+    }
   };
 
   const tabs = [
@@ -54,15 +95,26 @@ export default function Profile() {
       content: user.watchlist.length === 0 ? (
         <EmptyState label="À voir" onBrowse={() => navigate("/")} />
       ) : (
-        <ul className="watchlist">
-          {user.watchlist.map(movie => (
-            <li key={movie.id}>
-              {movie.title}
-              <button onClick={() => handleMarkWatched(movie)}>Marqué comme vu</button>
-            </li>
-          ))}
-        </ul>
-      )
+        <>
+          {message && <p className="info">{message}</p>}
+          <ul className="watchlist">
+            {user.watchlist.map(movie => (
+              <li key={movie.id}>
+                {movie.title}
+                <button onClick={() => handleMarkWatched(movie)}>
+                  Marquer comme vu
+                </button>
+                <button
+                  className="remove-btn"
+                  onClick={() => handleRemoveFromWatchlist(movie)}
+                >
+                  Supprimer
+                </button>
+              </li>
+            ))}
+          </ul>
+        </>
+      ),
     },
     {
       id: "watched",
@@ -70,16 +122,27 @@ export default function Profile() {
       content: user.watched.length === 0 ? (
         <EmptyState label="Vus" onBrowse={() => navigate("/")} />
       ) : (
-        <ul className="watchlist">
-          {user.watched.map(movie => (
-            <li key={movie.id}>
-              {movie.title}
-              <button onClick={() => handleUnmarkWatched(movie)}>Retirer</button>
-            </li>
-          ))}
-        </ul>
-      )
-    }
+        <>
+          {message && <p className="info">{message}</p>}
+          <ul className="watchlist">
+            {user.watched.map(movie => (
+              <li key={movie.id}>
+                {movie.title}
+                <button onClick={() => handleToggleWatchlist(movie)}>
+                  Remettre à voir
+                </button>
+                <button
+                  className="remove-btn"
+                  onClick={() => handleRemoveFromWatched(movie)}
+                >
+                  Supprimer
+                </button>
+              </li>
+            ))}
+          </ul>
+        </>
+      ),
+    },
   ];
 
   return (
@@ -90,7 +153,6 @@ export default function Profile() {
   );
 }
 
-// Composant interne pour afficher l'état vide
 function EmptyState({ label, onBrowse }) {
   return (
     <div className="empty-state">
@@ -99,5 +161,4 @@ function EmptyState({ label, onBrowse }) {
     </div>
   );
 }
-
 
