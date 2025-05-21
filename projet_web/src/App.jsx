@@ -1,22 +1,27 @@
 import "./App.css";
-import { Routes, Route, Link } from 'react-router-dom'
+import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
 import FilmList from "./components/FilmList";
-import FilmDetail from './components/FilmDetail';
-import Profile from './components/Profile'
+import FilmDetail from "./components/FilmDetail";
+import Profile from "./components/Profile";
+import Login from "./components/Login";
 
 export default function App() {
+  const [query, setQuery] = useState(""); // état pour la recherche
+
   return (
     <div>
-      <nav style={{ marginBottom: '1rem' }}>
-        <Link to="/" style={{ marginRight: '1rem' }}>Accueil</Link>
-        <Link to="/profile">Profil</Link>
-      </nav>
+      {/* Header */}
+      <Header onSearch={(term) => setQuery(term)} />
 
       <Routes>
-        <Route path="/" element={<FilmList />} />
+        {/*Transmission query à FilmList */}
+        <Route path="/" element={<FilmList initialQuery={query} />} />
         <Route path="/movie/:id" element={<FilmDetail />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
-  )
+  );
 }

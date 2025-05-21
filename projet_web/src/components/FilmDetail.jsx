@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getMovieById } from "../services/movieService";
 import { getUserById, updateUserWatchlist } from "../services/userService";
-import Synopsis from "./Synopsis"; 
+import Synopsis from "./Synopsis";
+import Trailer from "./Trailer";
+import FilmInfo from "./FilmInfo";
 import "./FilmDetail.css";
 
 export default function FilmDetail() {
@@ -112,8 +114,21 @@ export default function FilmDetail() {
           : "Ajouter à ma watchlist"}
       </button>
 
-      {/* Ajout du composant Synopsis */}
-      {movie.overview && <Synopsis text={movie.overview} />}
+      <div className="detail-content">
+        <div className="detail-main">
+          {movie.overview && <Synopsis text={movie.overview} />}
+          {movie.trailerUrl && <Trailer url={movie.trailerUrl} />}
+        </div>
+        <aside className="detail-sidebar">
+          <FilmInfo
+            director={movie.director}
+            status={movie.status}
+            budget={movie.budget}
+            revenue={movie.revenue}
+            productionCompanies={movie.production_companies}
+          />
+        </aside>
+      </div>
     </div>
   );
 }

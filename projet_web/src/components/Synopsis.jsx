@@ -1,4 +1,3 @@
-// src/components/Synopsis.jsx
 export default function Synopsis({ text }) {
   return (
     <section className="film-synopsis">

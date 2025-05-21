@@ -1,24 +1,32 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getAllMovies, searchMovies } from "../services/movieService";
+import { getAllMovies } from "../services/movieService";
 import "./FilmList.css";
 
-export default function FilmList() {
+export default function FilmList({ initialQuery = "" }) {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(initialQuery);
 
+  // Met à jour la requête si initialQuery change depuis le Header
+  useEffect(() => {
+    setQuery(initialQuery);
+  }, [initialQuery]);
+
+  // Charge tous les films puis filtre côté client
   useEffect(() => {
     setLoading(true);
     setError(null);
 
-    const fetchFn = query ? () => searchMovies(query) : () => getAllMovies();
-
-    fetchFn()
+    getAllMovies()
       .then((data) => {
-        setMovies(data);
+        const filtered = query
+          ? data.filter((movie) =>
+              movie.title.toLowerCase().includes(query.toLowerCase())
+            )
+          : data;
+        setMovies(filtered);
         setLoading(false);
       })
       .catch((err) => {
@@ -34,50 +42,19 @@ export default function FilmList() {
     return <p className="no-results">Aucun film trouvé pour « {query} »</p>;
 
   return (
-    <>
-      <form
-        className="search-form"
-        onSubmit={(e) => {
-          e.preventDefault();
-          setQuery(searchTerm);
-        }}
-      >
-        <input
-          type="text"
-          className="search-input"
-          placeholder="Rechercher un film…"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <button type="submit" className="search-button">
-          Rechercher
-        </button>
-        <button
-          type="button"
-          className="reset-button"
-          onClick={() => {
-            setSearchTerm("");
-            setQuery("");
-          }}
-        >
-          Voir tous
-        </button>
-      </form>
-
-      <ul className="film-list">
-        {movies.map((movie) => (
-          <li key={movie.id} className="film-item">
-            <Link to={`/movie/${movie.id}`} className="film-link">
-              <img
-                src={movie.posterUrl}
-                alt={`Affiche de ${movie.title}`}
-                className="film-poster"
-              />
-              <p className="film-title">{movie.title}</p>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </>
+    <ul className="film-list">
+      {movies.map((movie) => (
+        <li key={movie.id} className="film-item">
+          <Link to={`/movie/${movie.id}`} className="film-link">
+            <img
+              src={movie.posterUrl}
+              alt={`Affiche de ${movie.title}`}
+              className="film-poster"
+            />
+            <p className="film-title">{movie.title}</p>
+          </Link>
+        </li>
+      ))}
+    </ul>
   );
 }
