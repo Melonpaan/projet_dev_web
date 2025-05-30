@@ -1,0 +1,12 @@
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Core/obj/Debug/net9.0/Core.GeneratedMSBuildEditorConfig.editorconfig
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Core/obj/Debug/net9.0/Core.AssemblyInfoInputs.cache
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Core/obj/Debug/net9.0/Core.AssemblyInfo.cs
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Core/obj/Debug/net9.0/Core.csproj.CoreCompileInputs.cache
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Core/obj/Debug/net9.0/Core.csproj.AssemblyReference.cache
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Core/bin/Debug/net9.0/Core.deps.json
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Core/bin/Debug/net9.0/Core.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Core/bin/Debug/net9.0/Core.pdb
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Core/obj/Debug/net9.0/Core.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Core/obj/Debug/net9.0/refint/Core.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Core/obj/Debug/net9.0/Core.pdb
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Core/obj/Debug/net9.0/ref/Core.dll
