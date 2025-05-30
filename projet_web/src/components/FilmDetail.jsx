@@ -90,10 +90,10 @@ export default function FilmDetail() {
       </Link>
 
       <h2>{movie.title}</h2>
-      {movie.release_date && (
+      {movie.releaseDate && (
         <p className="release-date">
           Sorti le{" "}
-          {new Date(movie.release_date).toLocaleDateString("fr-FR", {
+          {new Date(movie.releaseDate).toLocaleDateString("fr-FR", {
             day: "numeric",
             month: "long",
             year: "numeric",
@@ -136,6 +136,9 @@ export default function FilmDetail() {
           <FilmInfo
             title={movie.title}
             releaseDate={movie.releaseDate}
+            runtime={movie.runtime}
+            voteAverageTopRated={movie.voteAverageTopRated}
+            genres={movie.genres}
             revenue={movie.revenue}
             overview={movie.overview}
             youtubeUrl={movie.youtubeUrl}
