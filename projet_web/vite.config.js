@@ -5,11 +5,11 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      // Toute requête /api/... ira vers http://localhost:3001/...
+      // Redirige les requêtes /api/... vers le backend .NET
       '/api': {
-        target: 'http://localhost:3001',
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/api/, '')
+        target: 'http://localhost:5165', // Cible du backend .NET (HTTP)
+        changeOrigin: true, // Nécessaire pour les hôtes virtuels
+        // secure: false, // Plus nécessaire car la cible est HTTP
       }
     }
   }
