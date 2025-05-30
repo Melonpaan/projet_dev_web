@@ -36,7 +36,7 @@ export default function FilmDetail() {
       });
   }, [id]);
 
-  // 2) Charger la watchlist de l’utilisateur
+  // 2) Charger la watchlist de l'utilisateur
   useEffect(() => {
     getUserById(userId)
       .then(user => {
@@ -47,13 +47,13 @@ export default function FilmDetail() {
       .catch(() => {});
   }, [id]);
 
-  // 3) Basculer l’état watchlist
+  // 3) Basculer l'état watchlist
   async function handleToggle() {
     setMessage(null);
     setToggleLoading(true);
     setToggleError(null);
 
-    // Sauvegarde l’état avant le toggle pour le message
+    // Sauvegarde l'état avant le toggle pour le message
     const wasIn = isInWatchlist;
 
     try {
@@ -65,11 +65,11 @@ export default function FilmDetail() {
       setUserWatchlist(updated.watchlist);
       setIsInWatchlist(updated.watchlist.some(m => String(m.id) === id));
 
-      // Affiche un message selon l’action
+      // Affiche un message selon l'action
       setMessage(
         wasIn
-          ? "Le film a été retiré de votre liste “À voir”."
-          : "Le film a été ajouté à votre liste “À voir”."
+          ? "Le film a été retiré de votre liste 'À voir'."
+          : "Le film a été ajouté à votre liste 'À voir'."
       );
     } catch {
       setToggleError("Erreur lors de la mise à jour");
@@ -86,7 +86,7 @@ export default function FilmDetail() {
   return (
     <div className="film-detail">
       <Link to="/" className="back-link">
-        ← Retour à l’accueil
+        ← Retour à l'accueil
       </Link>
 
       <h2>{movie.title}</h2>
@@ -130,15 +130,15 @@ export default function FilmDetail() {
       <div className="detail-content">
         <div className="detail-main">
           {movie.overview  && <Synopsis text={movie.overview} />}
-          {movie.trailerUrl && <Trailer url={movie.trailerUrl} />}
+          {movie.youtubeUrl && <Trailer url={movie.youtubeUrl} />}
         </div>
         <aside className="detail-sidebar">
           <FilmInfo
-            director={movie.director}
-            status={movie.status}
-            budget={movie.budget}
+            title={movie.title}
+            releaseDate={movie.releaseDate}
             revenue={movie.revenue}
-            productionCompanies={movie.production_companies}
+            overview={movie.overview}
+            youtubeUrl={movie.youtubeUrl}
           />
         </aside>
       </div>
