@@ -47,7 +47,7 @@ export default function FilmList({ initialQuery = "" }) {
         <li key={movie.id} className="film-item">
           <Link to={`/movie/${movie.id}`} className="film-link">
             <img
-              src={movie.posterUrl}
+              src={movie.posterPath}
               alt={`Affiche de ${movie.title}`}
               className="film-poster"
             />

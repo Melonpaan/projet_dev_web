@@ -101,7 +101,7 @@ export default function FilmDetail() {
         </p>
       )}
       <img
-        src={movie.posterUrl}
+        src={movie.posterPath}
         alt={`Affiche de ${movie.title}`}
         className="detail-poster"
       />
