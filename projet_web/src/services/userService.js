@@ -158,3 +158,27 @@ export async function removeFromWatched(userId, movie) {
 //     return res.json();
 //   });
 // }
+
+export function registerUser({ username, email, password, confirmPassword, firstName, lastName, dateOfBirth }) {
+  return fetch('/api/users/register', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ username, email, password, confirmPassword, firstName, lastName, dateOfBirth })
+  }).then(res => {
+    if (!res.ok) throw new Error('Échec inscription');
+    return res.json(); // { message: ... }
+  });
+}
+
+export function authenticate({ username, password }) {
+  return fetch('/api/users/auth', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ username, password })
+  })
+  .then(res => {
+    if (res.status === 401) throw new Error('Identifiants invalides');
+    if (!res.ok) throw new Error('Erreur réseau');
+    return res.json(); // { id, username, email, ... }
+  });
+}

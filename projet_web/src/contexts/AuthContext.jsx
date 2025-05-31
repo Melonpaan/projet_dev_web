@@ -1,34 +1,38 @@
-import { createContext, useState, useContext, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from 'react';
+import { authenticate, registerUser } from '../services/userService';
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  // 1) Charger le token depuis localStorage au démarrage
-  const [token, setToken] = useState(() => {
-    return localStorage.getItem("authToken");
+  const [user, setUser] = useState(() => {
+    const raw = localStorage.getItem('user');
+    return raw ? JSON.parse(raw) : null;
   });
 
-  // 2) Dès que le token change, on synchronise sur localStorage
+  // Persister user à chaque changement
   useEffect(() => {
-    if (token) {
-      localStorage.setItem("authToken", token);
-    } else {
-      localStorage.removeItem("authToken");
-    }
-  }, [token]);
+    if (user) localStorage.setItem('user', JSON.stringify(user));
+    else localStorage.removeItem('user');
+  }, [user]);
 
-  function login(newToken) {
-    setToken(newToken);
-  }
+  const login = async (username, password) => {
+    const u = await authenticate({ username, password });
+    setUser(u);
+    return u;
+  };
 
-  function logout() {
-    setToken(null);
-  }
+  const register = async ({ username, email, password, confirmPassword, firstName, lastName, dateOfBirth }) => {
+    await registerUser({ username, email, password, confirmPassword, firstName, lastName, dateOfBirth });
+    // après inscription, on peut auto-connecter
+    return login(username, password);
+  };
+
+  const logout = () => {
+    setUser(null);
+  };
 
   return (
-    <AuthContext.Provider
-      value={{ token, login, logout, isAuthenticated: !!token }}
-    >
+    <AuthContext.Provider value={{ user, login, logout, register, isAuthenticated: !!user }}>
       {children}
     </AuthContext.Provider>
   );

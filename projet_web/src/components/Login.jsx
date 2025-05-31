@@ -1,32 +1,24 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { loginUser } from "../services/authService";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import "./Login.css";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
   const { login } = useAuth();
+  const navigate = useNavigate();
 
-  async function handleSubmit(e) {
+  const handleSubmit = async e => {
     e.preventDefault();
-    setLoading(true);
-    setError(null);
-
     try {
-      const { token } = await loginUser(email, password);
-      login(token);
+      await login(username, password);
       navigate("/profile");
     } catch (err) {
       setError(err.message);
-    } finally {
-      setLoading(false);
     }
-  }
+  };
 
   return (
     <div className="login-page">
@@ -34,11 +26,11 @@ export default function Login() {
       <form onSubmit={handleSubmit} className="login-form">
         {error && <p className="error">{error}</p>}
         <label>
-          Email
+          Username
           <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
         </label>
@@ -51,9 +43,8 @@ export default function Login() {
             required
           />
         </label>
-        <button type="submit" disabled={loading}>
-          {loading ? "…Connexion" : "Se connecter"}
-        </button>
+        <button type="submit">Se connecter</button>
+        <p>Pas encore inscrit ? <Link to="/register">Inscription</Link></p>
       </form>
     </div>
   );
