@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getMovieById } from "../services/movieService";
-import { getUserById, toggleWatchlist } from "../services/userService";
+import { getUserById, addToWatchlist, removeFromWatchlist } from "../services/userService";
 import { useAuth } from "../contexts/AuthContext";
 import Synopsis from "./Synopsis";
 import Trailer from "./Trailer";
@@ -57,19 +57,21 @@ export default function FilmDetail() {
     const wasIn = isInWatchlist;
 
     try {
-      const updated = await toggleWatchlist(userId, {
-        id: Number(id),
-        title: movie.title,
-      });
+      let updated;
+      if (wasIn) {
+        updated = await removeFromWatchlist(userId, Number(id));
+      } else {
+        updated = await addToWatchlist(userId, Number(id));
+      }
 
       setUserWatchlist(updated.watchlist);
-      setIsInWatchlist(updated.watchlist.some(m => String(m.id) === id));
+      setIsInWatchlist(updated.watchlist.some(m => m.id === Number(id)));
 
       // Affiche un message selon l'action
       setMessage(
         wasIn
-          ? "Le film a été retiré de votre liste 'À voir'."
-          : "Le film a été ajouté à votre liste 'À voir'."
+          ? 'Le film a été retiré de votre liste « À voir ».'
+          : 'Le film a été ajouté à votre liste « À voir ».'
       );
     } catch {
       setToggleError("Erreur lors de la mise à jour");

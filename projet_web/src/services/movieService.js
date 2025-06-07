@@ -1,5 +1,9 @@
 const BASE_URL = '/api/movies';
 
+/**
+ * Récupère la liste complète des films depuis l'API.
+ * @returns {Promise<Array>} Promesse résolue avec le tableau des films.
+ */
 export function getAllMovies() {
   return fetch(BASE_URL)
     .then(res => {
@@ -8,33 +12,30 @@ export function getAllMovies() {
     });
 }
 
+/**
+ * Recherche des films dont le titre contient le terme fourni.
+ * @param {string} term - Terme de recherche pour filtrer les titres.
+ * @returns {Promise<Array>} Promesse résolue avec le tableau des films correspondants.
+ */
 export function searchMovies(term) {
   return fetch(`${BASE_URL}/search/${encodeURIComponent(term)}`)
     .then(res => {
-      if (!res.ok) throw new Error(`Erreur réseau lors de la recherche de films pour: ${term}`);
+      if (!res.ok) throw new Error(`Erreur réseau lors de la recherche de films pour : ${term}`);
       return res.json();
     });
 }
 
+/**
+ * Récupère les détails d'un film spécifique par son identifiant.
+ * @param {number|string} id - Identifiant du film.
+ * @returns {Promise<Object>} Promesse résolue avec les détails du film.
+ */
 export function getMovieById(id) {
   return fetch(`${BASE_URL}/${id}`)
     .then(res => {
-      if (!res.ok) throw new Error(`Erreur réseau lors de la récupération du film avec ID: ${id}`);
+      if (!res.ok) throw new Error(`Erreur réseau lors de la récupération du film avec ID : ${id}`);
       return res.json();
     });
 }
 
-// Potentiellement, ajouter ici la fonction pour mettre à jour un film (PUT)
-// export function updateMovie(id, movieData) {
-//   return fetch(`${BASE_URL}/${id}`, {
-//     method: 'PUT',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(movieData),
-//   }).then(res => {
-//     if (!res.ok) throw new Error(`Erreur réseau lors de la mise à jour du film avec ID: ${id}`);
-//     return res.json(); // Ou une autre réponse appropriée du backend
-//   });
-// }
 

@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   getUserById,
-  toggleWatchlist,
-  markAsWatched,
+  moveToWatched,
+  moveToWatchlist,
   removeFromWatchlist,
   removeFromWatched,
 } from "../services/userService";
@@ -39,28 +39,22 @@ export default function Profile() {
   // 1) Marquer comme vu
   const handleMarkWatched = async movie => {
     try {
-      const updated = await markAsWatched(userId, movie);
+      // Déplace de « À voir » vers « Vus »
+      const updated = await moveToWatched(userId, movie.id);
       setUser(updated);
-      setMessage("Le film a été marqué comme vu.");
+      setMessage('Le film a été marqué comme vu.');
     } catch {
       setError("Erreur lors de la mise à jour");
     }
   };
 
-  // 2) Toggle watchlist (add / move / already)
+  // 2) Déplacer de « Vus » vers « À voir »
   const handleToggleWatchlist = async movie => {
     setMessage(null);
     try {
-      const { user: updated, status } = await toggleWatchlist(userId, movie);
+      const updated = await moveToWatchlist(userId, movie.id);
       setUser(updated);
-
-      if (status === "already") {
-        setMessage("Le film est déjà dans votre liste “À voir”.");
-      } else if (status === "moved") {
-        setMessage('Le film a été déplacé de "Vus" vers "À voir".');
-      } else {
-        setMessage("Le film a été ajouté à votre liste “À voir”.");
-      }
+      setMessage('Le film a été déplacé vers la liste « À voir ».');
     } catch {
       setError("Erreur lors de la mise à jour");
     }
@@ -69,9 +63,9 @@ export default function Profile() {
   // 3) Supprimer de la watchlist
   const handleRemoveFromWatchlist = async movie => {
     try {
-      const updated = await removeFromWatchlist(userId, movie);
+      const updated = await removeFromWatchlist(userId, movie.id);
       setUser(updated);
-      setMessage("Le film a été retiré de votre liste “À voir”.");
+      setMessage('Le film a été retiré de votre liste « À voir ».');
     } catch {
       setError("Erreur lors de la suppression");
     }
@@ -80,9 +74,9 @@ export default function Profile() {
   // 4) Supprimer de la liste « Vus »
   const handleRemoveFromWatched = async movie => {
     try {
-      const updated = await removeFromWatched(userId, movie);
+      const updated = await removeFromWatched(userId, movie.id);
       setUser(updated);
-      setMessage("Le film a été retiré de votre liste “Vus”.");
+      setMessage('Le film a été retiré de votre liste « Vus ».');
     } catch {
       setError("Erreur lors de la suppression");
     }
@@ -156,7 +150,7 @@ export default function Profile() {
 function EmptyState({ label, onBrowse }) {
   return (
     <div className="empty-state">
-      <p>Aucun film dans la liste “{label}”.</p>
+      <p>Aucun film dans la liste "{label}".</p>
       <button onClick={onBrowse}>Parcourir les films</button>
     </div>
   );

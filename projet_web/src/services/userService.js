@@ -1,6 +1,20 @@
 const USER_BASE_URL = "/api/users";
 const USER_LIST_BASE_URL = "/api/userlist";
 
+/**
+ * Récupère l'utilisateur par son ID, incluant :
+ * - ses informations (username, email)
+ * - sa watchlist (films à voir)
+ * - sa liste des films vus
+ *
+ * Cette fonction :
+ * 1. Récupère tous les utilisateurs via GET /api/users et filtre par userId.
+ * 2. Récupère la liste "to_watch" et transforme en array de Movie.
+ * 3. Récupère la liste "watched" et transforme en array de Movie.
+ *
+ * @param {number} userId - Identifiant de l'utilisateur.
+ * @returns {Promise<{ id: number, username: string, email: string, watchlist: Movie[], watched: Movie[] }>}
+ */
 export async function getUserById(userId) {
   // Étape 1: Récupérer les détails de l'utilisateur (nom, etc.)
   // Actuellement, il n'y a pas d'endpoint direct GET /api/users/{id}
@@ -37,128 +51,103 @@ export async function getUserById(userId) {
 }
 
 /**
- * Toggle a movie in the watchlist:
- * - If the movie is not in watchlist, add it and remove from watched
- * - If the movie is already in watchlist, remove it and add to watched
+ * Ajoute un film à la liste "À voir" de l'utilisateur.
+ *
+ * @param {number} userId - Identifiant de l'utilisateur.
+ * @param {number} movieId - Identifiant du film.
+ * @returns {Promise<object>} - L'utilisateur mis à jour.
  */
-export async function toggleWatchlist(userId, movie) {
-  const user = await getUserById(userId); // Récupère l'état actuel
-
-  const isMovieInWatchlist = user.watchlist.some((m) => m.id === movie.id);
-
-  if (isMovieInWatchlist) {
-    // Le film est dans la watchlist -> le passer à watched
-    // 1. Trouver l'ID de l'entrée UserList pour le supprimer de to_watch
-    const watchlistItemsResponse = await fetch(`${USER_LIST_BASE_URL}/to_watch/${userId}`);
-    const watchlistItems = await watchlistItemsResponse.json();
-    const userListEntry = watchlistItems.find(item => item.movieId === movie.id);
-    if (userListEntry) {
-      await fetch(`${USER_LIST_BASE_URL}/${userListEntry.id}`, { method: 'DELETE' });
-    }
-    // 2. Ajouter à watched
-    await fetch(`${USER_LIST_BASE_URL}/watched`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ userId, movieId: movie.id, status: 'watched' }),
-    });
-  } else {
-    // Le film n'est pas dans la watchlist -> l'ajouter à watchlist
-    // 1. Ajouter à to_watch
-    await fetch(`${USER_LIST_BASE_URL}/to_watch`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ userId, movieId: movie.id, status: 'to_watch' }),
-    });
-    // 2. S'il était dans watched, le supprimer de watched
-    const watchedItemsResponse = await fetch(`${USER_LIST_BASE_URL}/watched/${userId}`);
-    const watchedItems = await watchedItemsResponse.json();
-    const userListEntry = watchedItems.find(item => item.movieId === movie.id);
-    if (userListEntry) {
-      await fetch(`${USER_LIST_BASE_URL}/${userListEntry.id}`, { method: 'DELETE' });
-    }
-  }
-  return getUserById(userId); // Retourner l'état mis à jour
+export async function addToWatchlist(userId, movieId) {
+  await fetch(`${USER_LIST_BASE_URL}/to_watch`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ userId, movieId, status: 'to_watch' }),
+  });
+  return getUserById(userId);
 }
 
 /**
- * Marquer un film comme vu
+ * Retire un film de la liste "À voir" de l'utilisateur.
+ *
+ * @param {number} userId - Identifiant de l'utilisateur.
+ * @param {number} movieId - Identifiant du film.
+ * @returns {Promise<object>} - L'utilisateur mis à jour.
  */
-export async function markAsWatched(userId, movie) {
-  // 1. Ajouter à la liste "watched"
+export async function removeFromWatchlist(userId, movieId) {
+  const response = await fetch(`${USER_LIST_BASE_URL}/to_watch/${userId}`);
+  if (!response.ok) throw new Error('Erreur lors de la suppression de la watchlist.');
+  const items = await response.json();
+  const entry = items.find(item => item.movieId === movieId);
+  if (entry) {
+    await fetch(`${USER_LIST_BASE_URL}/${entry.id}`, { method: 'DELETE' });
+  }
+  return getUserById(userId);
+}
+
+/**
+ * Ajoute un film à la liste "Vus" de l'utilisateur.
+ *
+ * @param {number} userId - Identifiant de l'utilisateur.
+ * @param {number} movieId - Identifiant du film.
+ * @returns {Promise<object>} - L'utilisateur mis à jour.
+ */
+export async function addToWatched(userId, movieId) {
   await fetch(`${USER_LIST_BASE_URL}/watched`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ userId, movieId: movie.id, status: 'watched' }),
+    body: JSON.stringify({ userId, movieId, status: 'watched' }),
   });
-
-  // 2. Si le film était dans "to_watch", le supprimer
-  const watchlistItemsResponse = await fetch(`${USER_LIST_BASE_URL}/to_watch/${userId}`);
-  if (watchlistItemsResponse.ok) {
-    const watchlistItems = await watchlistItemsResponse.json();
-    const userListEntry = watchlistItems.find(item => item.movieId === movie.id);
-    if (userListEntry) {
-      await fetch(`${USER_LIST_BASE_URL}/${userListEntry.id}`, { method: 'DELETE' });
-    }
-  }
-  return getUserById(userId); // Retourner l'état mis à jour
+  return getUserById(userId);
 }
 
 /**
- * Supprimer un film de la watchlist
+ * Retire un film de la liste "Vus" de l'utilisateur.
+ *
+ * @param {number} userId - Identifiant de l'utilisateur.
+ * @param {number} movieId - Identifiant du film.
+ * @returns {Promise<object>} - L'utilisateur mis à jour.
  */
-export async function removeFromWatchlist(userId, movie) {
-  const watchlistItemsResponse = await fetch(`${USER_LIST_BASE_URL}/to_watch/${userId}`);
-  if (!watchlistItemsResponse.ok) throw new Error("Erreur lors de la récupération de la watchlist pour suppression.");
-  const watchlistItems = await watchlistItemsResponse.json();
-  const userListEntry = watchlistItems.find(item => item.movieId === movie.id);
-
-  if (userListEntry) {
-    await fetch(`${USER_LIST_BASE_URL}/${userListEntry.id}`, { method: 'DELETE' });
+export async function removeFromWatched(userId, movieId) {
+  const response = await fetch(`${USER_LIST_BASE_URL}/watched/${userId}`);
+  if (!response.ok) throw new Error('Erreur lors de la suppression de la liste Vus.');
+  const items = await response.json();
+  const entry = items.find(item => item.movieId === movieId);
+  if (entry) {
+    await fetch(`${USER_LIST_BASE_URL}/${entry.id}`, { method: 'DELETE' });
   }
-  return getUserById(userId); // Retourner l'état mis à jour
+  return getUserById(userId);
 }
 
 /**
- * Supprimer un film de la liste "Vus"
+ * Déplace un film de "À voir" vers "Vus".
+ *
+ * @param {number} userId - Identifiant de l'utilisateur.
+ * @param {number} movieId - Identifiant du film.
+ * @returns {Promise<object>} - L'utilisateur mis à jour.
  */
-export async function removeFromWatched(userId, movie) {
-  const watchedItemsResponse = await fetch(`${USER_LIST_BASE_URL}/watched/${userId}`);
-  if (!watchedItemsResponse.ok) throw new Error("Erreur lors de la récupération de la liste des vus pour suppression.");
-  const watchedItems = await watchedItemsResponse.json();
-  const userListEntry = watchedItems.find(item => item.movieId === movie.id);
-
-  if (userListEntry) {
-    await fetch(`${USER_LIST_BASE_URL}/${userListEntry.id}`, { method: 'DELETE' });
-  }
-  return getUserById(userId); // Retourner l'état mis à jour
+export async function moveToWatched(userId, movieId) {
+  await addToWatched(userId, movieId);
+  return removeFromWatchlist(userId, movieId);
 }
 
-// Les fonctions updateUserWatchlist et updateUserWatched ne sont plus nécessaires
-// car les opérations sont maintenant plus granulaires.
-// Je les commente pour l'instant.
+/**
+ * Déplace un film de "Vus" vers "À voir".
+ *
+ * @param {number} userId - Identifiant de l'utilisateur.
+ * @param {number} movieId - Identifiant du film.
+ * @returns {Promise<object>} - L'utilisateur mis à jour.
+ */
+export async function moveToWatchlist(userId, movieId) {
+  await addToWatchlist(userId, movieId);
+  return removeFromWatched(userId, movieId);
+}
 
-// export function updateUserWatchlist(id, watchlist) {
-//   return fetch(`${USER_BASE_URL}/${id}`, {  // Note: USER_BASE_URL et non USER_LIST_BASE_URL
-//     method: "PATCH",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify({ watchlist }),
-//   }).then((res) => {
-//     if (!res.ok) throw new Error("Erreur réseau");
-//     return res.json();
-//   });
-// }
-
-// export function updateUserWatched(id, watched) {
-//   return fetch(`${USER_BASE_URL}/${id}`, { // Note: USER_BASE_URL et non USER_LIST_BASE_URL
-//     method: "PATCH",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify({ watched }),
-//   }).then((res) => {
-//     if (!res.ok) throw new Error("Erreur réseau");
-//     return res.json();
-//   });
-// }
-
+/**
+ * Enregistre un nouvel utilisateur.
+ *
+ * @param {{ username: string, email: string, password: string, confirmPassword: string, firstName: string, lastName: string, dateOfBirth: string }} userData
+ * @returns {Promise<object>} - Message de confirmation du backend.
+ */
 export function registerUser({ username, email, password, confirmPassword, firstName, lastName, dateOfBirth }) {
   return fetch('/api/users/register', {
     method: 'POST',
@@ -170,6 +159,12 @@ export function registerUser({ username, email, password, confirmPassword, first
   });
 }
 
+/**
+ * Authentifie un utilisateur existant.
+ *
+ * @param {{ username: string, password: string }} credentials
+ * @returns {Promise<object>} - Les données de l'utilisateur (token exclus).
+ */
 export function authenticate({ username, password }) {
   return fetch('/api/users/auth', {
     method: 'POST',
