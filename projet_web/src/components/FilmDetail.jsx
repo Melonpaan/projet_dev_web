@@ -6,6 +6,7 @@ import { useAuth } from "../contexts/AuthContext";
 import Synopsis from "./Synopsis";
 import Trailer from "./Trailer";
 import FilmInfo from "./FilmInfo";
+import CommentsSection from "./CommentsSection";
 import "./FilmDetail.css";
 
 export default function FilmDetail() {
@@ -147,6 +148,9 @@ export default function FilmDetail() {
           />
         </aside>
       </div>
+
+      {/* Section des commentaires */}
+      <CommentsSection movieId={movie.id} />
     </div>
   );
 }
