@@ -14,7 +14,7 @@ public static class UserListRoutes
             .WithTags("UserList");
 
         // GET : Tous les films à regarder d'un user
-        group.MapGet("to_watch", (HttpContext context, IUserListUseCases userListUseCases) =>
+        group.MapGet("/to_watch", (HttpContext context, IUserListUseCases userListUseCases) =>
         {
             var userId = int.Parse(context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
             var list = userListUseCases.GetUserLists(userId)
@@ -25,7 +25,7 @@ public static class UserListRoutes
         .WithName("GetToWatchList");
 
         // GET : Tous les films déjà regardés d'un user
-        group.MapGet("watched", (HttpContext context, IUserListUseCases userListUseCases) =>
+        group.MapGet("/watched", (HttpContext context, IUserListUseCases userListUseCases) =>
         {
             var userId = int.Parse(context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
             var list = userListUseCases.GetUserLists(userId)
@@ -61,10 +61,10 @@ public static class UserListRoutes
         .Produces<object>(StatusCodes.Status200OK);
 
         // PUT : Modifier le status d'un film dans la liste
-        group.MapPut("", ([FromBody] UserList userList, HttpContext context, IUserListUseCases userListUseCases) =>
+        group.MapPut("/{id}", (int id, [FromBody] UserList userList, HttpContext context, IUserListUseCases userListUseCases) =>
         {
             var userId = int.Parse(context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
-            var existingList = userListUseCases.GetUserListById(userList.Id);
+            var existingList = userListUseCases.GetUserListById(id);
             
             if (existingList == null)
                 return Results.NotFound(new { message = "Liste non trouvée" });
@@ -76,9 +76,9 @@ public static class UserListRoutes
             {
                 return Results.BadRequest(new { message = "Le status doit être 'to_watch' ou 'watched'." });
             }
-            
-            userList.UserId = userId;
-            userListUseCases.UpdateUserList(userList);
+            existingList.Status = userList.Status;
+            existingList.UserId = userId;
+            userListUseCases.UpdateUserList(existingList);
             return Results.Ok(new { message = "Statut du film modifié avec succès" });
         })
         .WithName("UpdateUserList")

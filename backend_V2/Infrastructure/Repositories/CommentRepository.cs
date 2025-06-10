@@ -36,7 +36,16 @@ public class CommentRepository(IConfiguration configuration) : ICommentRepositor
     public Comment? GetById(int id)
     {
         const string sql = @"
-            SELECT c.*, u.username 
+            SELECT
+                c.id AS Id,
+                c.user_id AS UserId,
+                c.movie_id AS MovieId,
+                c.content AS Content,
+                c.created_at AS CreatedAt,
+                c.updated_at AS UpdatedAt,
+                c.parent_comment_id AS ParentCommentId,
+                c.likes_count AS LikesCount,
+                u.username AS Username
             FROM comments c
             JOIN users u ON c.user_id = u.id
             WHERE c.id = @Id;";

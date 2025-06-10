@@ -1,37 +1,12 @@
-/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Core/obj/Debug/net9.0/Core.GeneratedMSBuildEditorConfig.editorconfig
-/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Core/obj/Debug/net9.0/Core.AssemblyInfoInputs.cache
-/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Core/obj/Debug/net9.0/Core.AssemblyInfo.cs
-/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Core/obj/Debug/net9.0/Core.csproj.CoreCompileInputs.cache
-/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Core/obj/Debug/net9.0/Core.csproj.AssemblyReference.cache
-/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Core/bin/Debug/net9.0/Core.deps.json
-/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Core/bin/Debug/net9.0/Core.dll
-/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Core/bin/Debug/net9.0/Core.pdb
-/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Core/obj/Debug/net9.0/Core.dll
-/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Core/obj/Debug/net9.0/refint/Core.dll
-/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Core/obj/Debug/net9.0/Core.pdb
-/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Core/obj/Debug/net9.0/ref/Core.dll
-C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Core/bin/Debug/net9.0/Core.deps.json
-C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Core/bin/Debug/net9.0/Core.dll
-C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Core/bin/Debug/net9.0/Core.pdb
-C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Core/obj/Debug/net9.0/Core.csproj.AssemblyReference.cache
-C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Core/obj/Debug/net9.0/Core.GeneratedMSBuildEditorConfig.editorconfig
-C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Core/obj/Debug/net9.0/Core.AssemblyInfoInputs.cache
-C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Core/obj/Debug/net9.0/Core.AssemblyInfo.cs
-C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Core/obj/Debug/net9.0/Core.csproj.CoreCompileInputs.cache
-C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Core/obj/Debug/net9.0/Core.dll
-C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Core/obj/Debug/net9.0/refint/Core.dll
-C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Core/obj/Debug/net9.0/Core.pdb
-C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Core/obj/Debug/net9.0/ref/Core.dll
-/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Core/bin/Debug/net9.0/Core.deps.json
-/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Core/bin/Debug/net9.0/Core.dll
-/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Core/bin/Debug/net9.0/Core.pdb
-/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Core/obj/Debug/net9.0/Core.csproj.AssemblyReference.cache
-/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Core/obj/Debug/net9.0/Core.GeneratedMSBuildEditorConfig.editorconfig
-/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Core/obj/Debug/net9.0/Core.AssemblyInfoInputs.cache
-/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Core/obj/Debug/net9.0/Core.AssemblyInfo.cs
-/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Core/obj/Debug/net9.0/Core.csproj.CoreCompileInputs.cache
-/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Core/obj/Debug/net9.0/Core.sourcelink.json
-/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Core/obj/Debug/net9.0/Core.dll
-/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Core/obj/Debug/net9.0/refint/Core.dll
-/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Core/obj/Debug/net9.0/Core.pdb
-/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Core/obj/Debug/net9.0/ref/Core.dll
+/Users/abdelelfassi/Documents/test/backend_V2/Core/bin/Debug/net9.0/Core.deps.json
+/Users/abdelelfassi/Documents/test/backend_V2/Core/bin/Debug/net9.0/Core.dll
+/Users/abdelelfassi/Documents/test/backend_V2/Core/bin/Debug/net9.0/Core.pdb
+/Users/abdelelfassi/Documents/test/backend_V2/Core/obj/Debug/net9.0/Core.csproj.AssemblyReference.cache
+/Users/abdelelfassi/Documents/test/backend_V2/Core/obj/Debug/net9.0/Core.GeneratedMSBuildEditorConfig.editorconfig
+/Users/abdelelfassi/Documents/test/backend_V2/Core/obj/Debug/net9.0/Core.AssemblyInfoInputs.cache
+/Users/abdelelfassi/Documents/test/backend_V2/Core/obj/Debug/net9.0/Core.AssemblyInfo.cs
+/Users/abdelelfassi/Documents/test/backend_V2/Core/obj/Debug/net9.0/Core.csproj.CoreCompileInputs.cache
+/Users/abdelelfassi/Documents/test/backend_V2/Core/obj/Debug/net9.0/Core.dll
+/Users/abdelelfassi/Documents/test/backend_V2/Core/obj/Debug/net9.0/refint/Core.dll
+/Users/abdelelfassi/Documents/test/backend_V2/Core/obj/Debug/net9.0/Core.pdb
+/Users/abdelelfassi/Documents/test/backend_V2/Core/obj/Debug/net9.0/ref/Core.dll

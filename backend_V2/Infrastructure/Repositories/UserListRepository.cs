@@ -17,7 +17,27 @@ public class UserListRepository(IConfiguration configuration) : IUserListReposit
     public IEnumerable<UserList> GetByUserId(int userId)
     {
         const string sql = @"
-            SELECT ul.*, m.* 
+            SELECT 
+                ul.id AS Id,
+                ul.user_id AS UserId,          
+                ul.movie_id AS MovieId,        
+                ul.status AS Status,
+                m.id AS Id,
+                m.title AS Title,
+                m.adult AS Adult,
+                m.backdrop_path AS BackdropPath,
+                m.original_language AS OriginalLanguage,
+                m.original_title AS OriginalTitle,
+                m.overview AS Overview,
+                m.popularity AS Popularity,
+                m.poster_path AS PosterPath,
+                m.release_date AS ReleaseDate,
+                m.vote_average_top_rated AS VoteAverageTopRated,
+                m.vote_count AS VoteCount,
+                m.revenue AS Revenue,
+                m.runtime AS Runtime,
+                m.tagline AS Tagline,
+                m.youtube_url AS YoutubeUrl
             FROM user_list ul
             JOIN movies m ON ul.movie_id = m.id
             WHERE ul.user_id = @UserId;";
@@ -37,7 +57,27 @@ public class UserListRepository(IConfiguration configuration) : IUserListReposit
     public UserList? GetById(int id)
     {
         const string sql = @"
-            SELECT ul.*, m.* 
+            SELECT 
+                ul.id AS Id,
+                ul.user_id AS UserId,          
+                ul.movie_id AS MovieId,        
+                ul.status AS Status,
+                m.id AS Id,
+                m.title AS Title,
+                m.adult AS Adult,
+                m.backdrop_path AS BackdropPath,
+                m.original_language AS OriginalLanguage,
+                m.original_title AS OriginalTitle,
+                m.overview AS Overview,
+                m.popularity AS Popularity,
+                m.poster_path AS PosterPath,
+                m.release_date AS ReleaseDate,
+                m.vote_average_top_rated AS VoteAverageTopRated,
+                m.vote_count AS VoteCount,
+                m.revenue AS Revenue,
+                m.runtime AS Runtime,
+                m.tagline AS Tagline,
+                m.youtube_url AS YoutubeUrl
             FROM user_list ul
             JOIN movies m ON ul.movie_id = m.id
             WHERE ul.id = @Id;";

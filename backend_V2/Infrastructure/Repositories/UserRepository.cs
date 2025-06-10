@@ -23,9 +23,9 @@ public class UserRepository : IUserRepository
     {
         const string sql = @"
             SELECT 
-                id, 
-                username, 
-                email, 
+                id AS Id, 
+                username AS Username, 
+                email AS Email, 
                 password_hash AS PasswordHash, 
                 first_name AS FirstName, 
                 last_name AS LastName, 
@@ -40,9 +40,9 @@ public class UserRepository : IUserRepository
     {
         const string sql = @"
             SELECT 
-                id, 
-                username, 
-                email, 
+                id AS Id, 
+                username AS Username, 
+                email AS Email, 
                 password_hash AS PasswordHash, 
                 first_name AS FirstName, 
                 last_name AS LastName, 
@@ -52,13 +52,30 @@ public class UserRepository : IUserRepository
         using var connection = CreateConnection();
         return connection.QuerySingleOrDefault<User>(sql, new { Username = username });
     }
+    
+    public User? GetByEmail(string email)
+    {
+        const string sql = @"
+            SELECT 
+                id AS Id, 
+                username AS Username, 
+                email AS Email, 
+                password_hash AS PasswordHash, 
+                first_name AS FirstName, 
+                last_name AS LastName, 
+                date_of_birth AS DateOfBirth
+            FROM users
+            WHERE email = @Email;";
+        using var connection = CreateConnection();
+        return connection.QuerySingleOrDefault<User>(sql, new { Email = email });
+    }
 
     public int Create(User user)
     {
         const string sql = @"
             INSERT INTO users (username, email, password_hash, first_name, last_name, date_of_birth)
             VALUES (@Username, @Email, @PasswordHash, @FirstName, @LastName, @DateOfBirth);";
-                using var connection = CreateConnection();
+        using var connection = CreateConnection();
         return connection.ExecuteScalar<int>(sql, new
         {
             Username = user.Username,
@@ -94,9 +111,9 @@ public class UserRepository : IUserRepository
     {
         const string sql = @"
             SELECT 
-                id, 
-                username, 
-                email, 
+                id AS Id, 
+                username AS Username, 
+                email AS Email, 
                 password_hash AS PasswordHash, 
                 first_name AS FirstName, 
                 last_name AS LastName, 

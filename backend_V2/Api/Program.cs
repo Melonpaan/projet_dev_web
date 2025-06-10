@@ -47,7 +47,7 @@ builder.Services.AddAuthentication(options =>
         RoleClaimType = ClaimTypes.Role
     };
 });
-
+builder.Services.AddAuthorization();
 #endregion
 
 var app = builder.Build();

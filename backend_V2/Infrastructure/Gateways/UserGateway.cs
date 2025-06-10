@@ -12,6 +12,10 @@ public class UserGateway(IUserRepository userRepository) : IUserGateway
     {
         return _userRepository.GetByUsername(username);
     }
+    public User? GetUserByEmail(string email)
+    {
+        return _userRepository.GetByEmail(email);
+    }
 
     public IEnumerable<User> GetAllUsers()
     {

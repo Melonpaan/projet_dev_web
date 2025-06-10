@@ -21,7 +21,7 @@ public class UserUseCases : IUserUseCases
             throw new InvalidOperationException("Utilisateur non trouvé");
         }
 
-        var user = _userGateway.GetUserByUsername(request.Username);
+        var user = _userGateway.GetUserByEmail(request.Email);
         if (user == null)
         {
             throw new InvalidOperationException("Utilisateur non trouvé");

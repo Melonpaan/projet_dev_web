@@ -2618,11 +2618,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Infrastructure/Infrastructure.csproj",
+      "projectUniqueName": "/Users/abdelelfassi/Documents/test/backend_V2/Infrastructure/Infrastructure.csproj",
       "projectName": "Infrastructure",
-      "projectPath": "/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Infrastructure/Infrastructure.csproj",
+      "projectPath": "/Users/abdelelfassi/Documents/test/backend_V2/Infrastructure/Infrastructure.csproj",
       "packagesPath": "/Users/abdelelfassi/.nuget/packages/",
-      "outputPath": "/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Infrastructure/obj/",
+      "outputPath": "/Users/abdelelfassi/Documents/test/backend_V2/Infrastructure/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/abdelelfassi/.nuget/NuGet/NuGet.Config"
@@ -2637,8 +2637,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Core/Core.csproj": {
-              "projectPath": "/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Core/Core.csproj"
+            "/Users/abdelelfassi/Documents/test/backend_V2/Core/Core.csproj": {
+              "projectPath": "/Users/abdelelfassi/Documents/test/backend_V2/Core/Core.csproj"
             }
           }
         }
