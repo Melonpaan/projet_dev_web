@@ -13,3 +13,34 @@
 /Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Infrastructure/obj/Debug/net9.0/refint/Infrastructure.dll
 /Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Infrastructure/obj/Debug/net9.0/Infrastructure.pdb
 /Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Infrastructure/obj/Debug/net9.0/ref/Infrastructure.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Infrastructure/bin/Debug/net9.0/Infrastructure.deps.json
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Infrastructure/bin/Debug/net9.0/Infrastructure.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Infrastructure/bin/Debug/net9.0/Infrastructure.pdb
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Infrastructure/bin/Debug/net9.0/Core.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Infrastructure/bin/Debug/net9.0/Core.pdb
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Infrastructure/obj/Debug/net9.0/Infrastructure.csproj.AssemblyReference.cache
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Infrastructure/obj/Debug/net9.0/Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Infrastructure/obj/Debug/net9.0/Infrastructure.AssemblyInfoInputs.cache
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Infrastructure/obj/Debug/net9.0/Infrastructure.AssemblyInfo.cs
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Infrastructure/obj/Debug/net9.0/Infrastructure.csproj.CoreCompileInputs.cache
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Infrastructure/obj/Debug/net9.0/Infrastr.15EFFBFE.Up2Date
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Infrastructure/obj/Debug/net9.0/Infrastructure.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Infrastructure/obj/Debug/net9.0/refint/Infrastructure.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Infrastructure/obj/Debug/net9.0/Infrastructure.pdb
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Infrastructure/obj/Debug/net9.0/ref/Infrastructure.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Infrastructure/bin/Debug/net9.0/Infrastructure.deps.json
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Infrastructure/bin/Debug/net9.0/Infrastructure.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Infrastructure/bin/Debug/net9.0/Infrastructure.pdb
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Infrastructure/bin/Debug/net9.0/Core.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Infrastructure/bin/Debug/net9.0/Core.pdb
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Infrastructure/obj/Debug/net9.0/Infrastructure.csproj.AssemblyReference.cache
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Infrastructure/obj/Debug/net9.0/Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Infrastructure/obj/Debug/net9.0/Infrastructure.AssemblyInfoInputs.cache
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Infrastructure/obj/Debug/net9.0/Infrastructure.AssemblyInfo.cs
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Infrastructure/obj/Debug/net9.0/Infrastructure.csproj.CoreCompileInputs.cache
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Infrastructure/obj/Debug/net9.0/Infrastructure.sourcelink.json
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Infrastructure/obj/Debug/net9.0/Infrastr.15EFFBFE.Up2Date
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Infrastructure/obj/Debug/net9.0/Infrastructure.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Infrastructure/obj/Debug/net9.0/refint/Infrastructure.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Infrastructure/obj/Debug/net9.0/Infrastructure.pdb
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Infrastructure/obj/Debug/net9.0/ref/Infrastructure.dll

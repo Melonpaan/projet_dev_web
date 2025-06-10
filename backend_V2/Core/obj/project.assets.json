@@ -257,11 +257,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Core/Core.csproj",
+      "projectUniqueName": "/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Core/Core.csproj",
       "projectName": "Core",
-      "projectPath": "/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Core/Core.csproj",
+      "projectPath": "/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Core/Core.csproj",
       "packagesPath": "/Users/abdelelfassi/.nuget/packages/",
-      "outputPath": "/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Core/obj/",
+      "outputPath": "/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Core/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/abdelelfassi/.nuget/NuGet/NuGet.Config"

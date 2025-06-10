@@ -2,6 +2,7 @@
 using Core.Models;
 using Core.UseCases.Abstractions;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Api.EndPoints;
 
@@ -21,40 +22,62 @@ public static class CommentRoutes
         .Produces<IEnumerable<Comment>>(StatusCodes.Status200OK)
         .Produces(StatusCodes.Status500InternalServerError);
 
-        group.MapPost("", ([FromBody] Comment comment, ICommentUseCases commentUseCases) =>
+        group.MapPost("", ([FromBody] Comment comment, HttpContext context, ICommentUseCases commentUseCases) =>
         {
+            var userId = int.Parse(context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
+            comment.UserId = userId;
             commentUseCases.AddComment(comment);
             return Results.Ok(new { message = "Commentaire ajouté avec succès" });
         })
+        .RequireAuthorization()
         .WithName("AddComment")
         .Produces<object>(StatusCodes.Status200OK)
-        .Produces(StatusCodes.Status400BadRequest)
+        .Produces(StatusCodes.Status401Unauthorized)
         .Produces(StatusCodes.Status500InternalServerError);
         
-        group.MapPut("{id}", (int id, [FromBody] Comment comment, ICommentUseCases commentUseCases) =>
+        group.MapPut("{id}", (int id, [FromBody] Comment comment, HttpContext context, ICommentUseCases commentUseCases) =>
         {
-            if (id != comment.Id)
-                return Results.BadRequest(new { message = "L'ID dans l'URL ne correspond pas à l'ID du commentaire" });
+            var userId = int.Parse(context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
+            var existingComment = commentUseCases.GetCommentById(id);
             
+            if (existingComment == null)
+                return Results.NotFound(new { message = "Commentaire non trouvé" });
+                
+            if (existingComment.UserId != userId)
+                return Results.Forbid();
+
+            comment.Id = id;
+            comment.UserId = userId;
             commentUseCases.UpdateComment(comment);
             return Results.Ok(new { message = "Commentaire mis à jour avec succès" });
         })
+        .RequireAuthorization()
         .WithName("UpdateComment")
         .Produces<object>(StatusCodes.Status200OK)
-        .Produces(StatusCodes.Status400BadRequest)
-        .Produces(StatusCodes.Status404NotFound)
-        .Produces(StatusCodes.Status500InternalServerError);
+        .Produces(StatusCodes.Status401Unauthorized)
+        .Produces(StatusCodes.Status403Forbidden)
+        .Produces(StatusCodes.Status404NotFound);
 
-
-        group.MapDelete("{id}", (int id, ICommentUseCases commentUseCases) =>
+        group.MapDelete("{id}", (int id, HttpContext context, ICommentUseCases commentUseCases) =>
         {
+            var userId = int.Parse(context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
+            var existingComment = commentUseCases.GetCommentById(id);
+            
+            if (existingComment == null)
+                return Results.NotFound(new { message = "Commentaire non trouvé" });
+                
+            if (existingComment.UserId != userId)
+                return Results.Forbid();
+
             commentUseCases.DeleteComment(id);
             return Results.Ok(new { message = "Commentaire supprimé avec succès" });
         })
+        .RequireAuthorization()
         .WithName("DeleteComment")
         .Produces<object>(StatusCodes.Status200OK)
-        .Produces(StatusCodes.Status404NotFound)
-        .Produces(StatusCodes.Status500InternalServerError);
+        .Produces(StatusCodes.Status401Unauthorized)
+        .Produces(StatusCodes.Status403Forbidden)
+        .Produces(StatusCodes.Status404NotFound);
 
         return app;
     }

@@ -57,3 +57,138 @@
 /Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Api/obj/Debug/net9.0/Api.pdb
 /Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Api/obj/Debug/net9.0/Api.genruntimeconfig.cache
 /Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/backend_V2/Api/obj/Debug/net9.0/ref/Api.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/appsettings.Development.json
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/appsettings.json
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/Api.staticwebassets.endpoints.json
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/Api.exe
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/Api.deps.json
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/Api.runtimeconfig.json
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/Api.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/Api.pdb
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/BCrypt.Net-Next.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/BouncyCastle.Cryptography.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/Dapper.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/Google.Protobuf.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/K4os.Compression.LZ4.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/K4os.Compression.LZ4.Streams.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/K4os.Hash.xxHash.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/Microsoft.Win32.SystemEvents.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/MySql.Data.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/System.Configuration.ConfigurationManager.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/System.Drawing.Common.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/System.Security.Cryptography.ProtectedData.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/System.Security.Permissions.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/System.Windows.Extensions.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/ZstdSharp.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/runtimes/win/lib/netcoreapp3.0/Microsoft.Win32.SystemEvents.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/runtimes/win-x64/native/comerr64.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/runtimes/win-x64/native/gssapi64.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/runtimes/win-x64/native/k5sprt64.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/runtimes/win-x64/native/krb5_64.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/runtimes/win-x64/native/krbcc64.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/runtimes/unix/lib/netcoreapp3.0/System.Drawing.Common.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/runtimes/win/lib/netcoreapp3.0/System.Drawing.Common.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/runtimes/win/lib/netcoreapp3.0/System.Windows.Extensions.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/Core.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/Infrastructure.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/Core.pdb
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/Infrastructure.pdb
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/obj/Debug/net9.0/Api.csproj.AssemblyReference.cache
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/obj/Debug/net9.0/Api.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/obj/Debug/net9.0/Api.AssemblyInfoInputs.cache
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/obj/Debug/net9.0/Api.AssemblyInfo.cs
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/obj/Debug/net9.0/Api.csproj.CoreCompileInputs.cache
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/obj/Debug/net9.0/Api.MvcApplicationPartsAssemblyInfo.cache
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/obj/Debug/net9.0/scopedcss/bundle/Api.styles.css
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/obj/Debug/net9.0/staticwebassets.build.json
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/obj/Debug/net9.0/staticwebassets.development.json
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/obj/Debug/net9.0/staticwebassets.build.endpoints.json
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/obj/Debug/net9.0/staticwebassets/msbuild.Api.Microsoft.AspNetCore.StaticWebAssets.props
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/obj/Debug/net9.0/staticwebassets/msbuild.Api.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/obj/Debug/net9.0/staticwebassets/msbuild.build.Api.props
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/obj/Debug/net9.0/staticwebassets/msbuild.buildMultiTargeting.Api.props
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/obj/Debug/net9.0/staticwebassets/msbuild.buildTransitive.Api.props
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/obj/Debug/net9.0/staticwebassets.pack.json
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/obj/Debug/net9.0/Api.csproj.Up2Date
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/obj/Debug/net9.0/Api.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/obj/Debug/net9.0/refint/Api.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/obj/Debug/net9.0/Api.pdb
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/obj/Debug/net9.0/Api.genruntimeconfig.cache
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/obj/Debug/net9.0/ref/Api.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/Microsoft.IdentityModel.Abstractions.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/Microsoft.IdentityModel.JsonWebTokens.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/Microsoft.IdentityModel.Logging.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/Microsoft.IdentityModel.Protocols.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/Microsoft.IdentityModel.Tokens.dll
+C:/Users/elfab/OneDrive/Bureau/proijet web/backend_V2/Api/bin/Debug/net9.0/System.IdentityModel.Tokens.Jwt.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/appsettings.Development.json
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/appsettings.json
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/Api.staticwebassets.endpoints.json
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/Api
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/Api.deps.json
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/Api.runtimeconfig.json
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/Api.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/Api.pdb
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/BCrypt.Net-Next.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/BouncyCastle.Cryptography.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/Dapper.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/Google.Protobuf.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/K4os.Compression.LZ4.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/K4os.Compression.LZ4.Streams.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/K4os.Hash.xxHash.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/Microsoft.IdentityModel.Abstractions.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/Microsoft.IdentityModel.Logging.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/Microsoft.IdentityModel.Protocols.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/Microsoft.IdentityModel.Tokens.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/Microsoft.Win32.SystemEvents.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/MySql.Data.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/System.Configuration.ConfigurationManager.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/System.Drawing.Common.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/System.IdentityModel.Tokens.Jwt.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/System.Security.Cryptography.ProtectedData.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/System.Security.Permissions.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/System.Windows.Extensions.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/ZstdSharp.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/runtimes/win/lib/netcoreapp3.0/Microsoft.Win32.SystemEvents.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/runtimes/win-x64/native/comerr64.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/runtimes/win-x64/native/gssapi64.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/runtimes/win-x64/native/k5sprt64.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/runtimes/win-x64/native/krb5_64.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/runtimes/win-x64/native/krbcc64.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/runtimes/unix/lib/netcoreapp3.0/System.Drawing.Common.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/runtimes/win/lib/netcoreapp3.0/System.Drawing.Common.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/runtimes/win/lib/netcoreapp3.0/System.Windows.Extensions.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/Core.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/Infrastructure.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/Core.pdb
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/bin/Debug/net9.0/Infrastructure.pdb
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/obj/Debug/net9.0/Api.csproj.AssemblyReference.cache
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/obj/Debug/net9.0/Api.GeneratedMSBuildEditorConfig.editorconfig
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/obj/Debug/net9.0/Api.AssemblyInfoInputs.cache
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/obj/Debug/net9.0/Api.AssemblyInfo.cs
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/obj/Debug/net9.0/Api.csproj.CoreCompileInputs.cache
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/obj/Debug/net9.0/Api.MvcApplicationPartsAssemblyInfo.cache
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/obj/Debug/net9.0/Api.sourcelink.json
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/obj/Debug/net9.0/scopedcss/bundle/Api.styles.css
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/obj/Debug/net9.0/staticwebassets.build.json
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/obj/Debug/net9.0/staticwebassets.development.json
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/obj/Debug/net9.0/staticwebassets.build.endpoints.json
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/obj/Debug/net9.0/staticwebassets/msbuild.Api.Microsoft.AspNetCore.StaticWebAssets.props
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/obj/Debug/net9.0/staticwebassets/msbuild.Api.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/obj/Debug/net9.0/staticwebassets/msbuild.build.Api.props
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/obj/Debug/net9.0/staticwebassets/msbuild.buildMultiTargeting.Api.props
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/obj/Debug/net9.0/staticwebassets/msbuild.buildTransitive.Api.props
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/obj/Debug/net9.0/staticwebassets.pack.json
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/obj/Debug/net9.0/Api.csproj.Up2Date
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/obj/Debug/net9.0/Api.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/obj/Debug/net9.0/refint/Api.dll
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/obj/Debug/net9.0/Api.pdb
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/obj/Debug/net9.0/Api.genruntimeconfig.cache
+/Users/abdelelfassi/Desktop/cours/bac2/q2/projet_web/github_repo/projet_dev_web/backend_V2/Api/obj/Debug/net9.0/ref/Api.dll
