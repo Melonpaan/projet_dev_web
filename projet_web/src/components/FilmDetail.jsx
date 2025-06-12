@@ -11,8 +11,8 @@ import "./FilmDetail.css";
 
 export default function FilmDetail() {
   const { id } = useParams();
-  const userId = 1;
-  const { isAuthenticated } = useAuth();
+  const { user: authUser, isAuthenticated } = useAuth();
+  const userId = authUser?.id;
 
   const [movie, setMovie]               = useState(null);
   const [loading, setLoading]           = useState(true);
@@ -37,8 +37,9 @@ export default function FilmDetail() {
       });
   }, [id]);
 
-  // 2) Charger la watchlist de l'utilisateur
+  // 2) Charger la watchlist de l'utilisateur si connecté
   useEffect(() => {
+    if (!isAuthenticated || !userId) return;
     getUserById(userId)
       .then(user => {
         const list = user.watchlist || [];
@@ -46,7 +47,7 @@ export default function FilmDetail() {
         setIsInWatchlist(list.some(m => String(m.id) === id));
       })
       .catch(() => {});
-  }, [id]);
+  }, [id, isAuthenticated, userId]);
 
   // 3) Basculer l'état watchlist
   async function handleToggle() {

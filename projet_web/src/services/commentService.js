@@ -1,5 +1,7 @@
 // Services pour la gestion des commentaires via l'API
 
+import { authFetch } from './api';
+
 const COMMENT_BASE_URL = '/api/comments';
 
 /**
@@ -16,14 +18,14 @@ export async function getComments(movieId) {
 
 /**
  * Ajoute un nouveau commentaire pour un film.
- * @param {{ userId: number, movieId: number, content: string }} data - Données du commentaire.
+ * @param {{ movieId: number, content: string }} data - Données du commentaire.
  * @returns {Promise<void>} Promesse résolue lorsque le commentaire est créé.
  */
-export async function addComment({ userId, movieId, content }) {
-  const res = await fetch(COMMENT_BASE_URL, {
+export async function addComment({ movieId, content }) {
+  const res = await authFetch(COMMENT_BASE_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ userId, movieId, content }),
+    body: JSON.stringify({ movieId, content }),
   });
   if (!res.ok) throw new Error("Erreur lors de l'ajout du commentaire.");
 }
@@ -34,10 +36,10 @@ export async function addComment({ userId, movieId, content }) {
  * @returns {Promise<void>} Promesse résolue lorsque la mise à jour est effectuée.
  */
 export async function updateComment({ id, content }) {
-  const res = await fetch(`${COMMENT_BASE_URL}/${id}`, {
+  const res = await authFetch(`${COMMENT_BASE_URL}/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ id, content }),
+    body: JSON.stringify({ content }),
   });
   if (!res.ok) throw new Error("Erreur lors de la modification du commentaire.");
 }
@@ -48,7 +50,7 @@ export async function updateComment({ id, content }) {
  * @returns {Promise<void>} Promesse résolue lorsque le commentaire est supprimé.
  */
 export async function deleteComment(commentId) {
-  const res = await fetch(`${COMMENT_BASE_URL}/${commentId}`, {
+  const res = await authFetch(`${COMMENT_BASE_URL}/${commentId}`, {
     method: 'DELETE',
   });
   if (!res.ok) throw new Error("Erreur lors de la suppression du commentaire.");

@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { authenticate, registerUser } from '../services/userService';
+import { parseJwt } from '../services/api';
 
 const AuthContext = createContext();
 
@@ -15,16 +16,23 @@ export function AuthProvider({ children }) {
     else localStorage.removeItem('user');
   }, [user]);
 
-  const login = async (username, password) => {
-    const u = await authenticate({ username, password });
-    setUser(u);
-    return u;
+  const login = async (email, password) => {
+    const { token } = await authenticate({ email, password });
+    const payload = parseJwt(token);
+    const idClaim =
+      payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'] ||
+      payload.nameid ||
+      payload.sub;
+    const usernameClaim = payload['unique_name'] || payload.name || '';
+    const userObj = { token, id: Number(idClaim), username: usernameClaim };
+    setUser(userObj);
+    return userObj;
   };
 
   const register = async ({ username, email, password, confirmPassword, firstName, lastName, dateOfBirth }) => {
     await registerUser({ username, email, password, confirmPassword, firstName, lastName, dateOfBirth });
     // après inscription, on peut auto-connecter
-    return login(username, password);
+    return login(email, password);
   };
 
   const logout = () => {

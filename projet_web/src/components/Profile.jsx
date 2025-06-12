@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from '../contexts/AuthContext';
 import {
   getUserById,
   moveToWatched,
@@ -11,7 +12,8 @@ import Tabs from "./Tabs";
 import "./Profile.css";
 
 export default function Profile() {
-  const userId = 1;
+  const { user: authUser } = useAuth();
+  const userId = authUser.id;
   const navigate = useNavigate();
 
   const [user, setUser]       = useState(null);

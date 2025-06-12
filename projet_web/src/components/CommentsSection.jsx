@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { getComments, addComment, updateComment, deleteComment } from '../services/commentService';
 import './CommentsSection.css';
+import { Link } from 'react-router-dom';
 
 /**
  * Composant pour gérer les commentaires d'un film :
@@ -125,6 +126,12 @@ export default function CommentsSection({ movieId }) {
           />
           <button type="submit" disabled={!newContent.trim()}>Publier</button>
         </form>
+      )}
+
+      {!isAuthenticated && (
+        <p className="login-prompt">
+          <Link to="/login">Connectez-vous</Link> pour ajouter un commentaire.
+        </p>
       )}
     </section>
   );

@@ -1,3 +1,5 @@
+import { authFetch } from './api';
+
 const USER_BASE_URL = "/api/users";
 const USER_LIST_BASE_URL = "/api/userlist";
 
@@ -17,11 +19,7 @@ const USER_LIST_BASE_URL = "/api/userlist";
  */
 export async function getUserById(userId) {
   // Étape 1: Récupérer les détails de l'utilisateur (nom, etc.)
-  // Actuellement, il n'y a pas d'endpoint direct GET /api/users/{id}
-  // Donc, on récupère tous les utilisateurs et on filtre.
-  // Ce n'est pas idéal pour la performance si beaucoup d'utilisateurs.
-  // Une meilleure solution serait d'ajouter un endpoint GET /api/users/{id} au backend.
-  const usersResponse = await fetch(USER_BASE_URL);
+  const usersResponse = await authFetch(USER_BASE_URL);
   if (!usersResponse.ok) throw new Error("Erreur réseau lors de la récupération des utilisateurs.");
   const users = await usersResponse.json();
   const user = users.find(u => u.id === userId);
@@ -29,12 +27,12 @@ export async function getUserById(userId) {
   if (!user) throw new Error(`Utilisateur avec ID ${userId} non trouvé.`);
 
   // Étape 2: Récupérer la watchlist (to_watch)
-  const watchlistResponse = await fetch(`${USER_LIST_BASE_URL}/to_watch/${userId}`);
+  const watchlistResponse = await authFetch(`${USER_LIST_BASE_URL}/to_watch`);
   if (!watchlistResponse.ok) throw new Error("Erreur réseau lors de la récupération de la watchlist.");
   const watchlistItems = await watchlistResponse.json(); // Ce sont des UserList[]
 
   // Étape 3: Récupérer la liste des vus (watched)
-  const watchedResponse = await fetch(`${USER_LIST_BASE_URL}/watched/${userId}`);
+  const watchedResponse = await authFetch(`${USER_LIST_BASE_URL}/watched`);
   if (!watchedResponse.ok) throw new Error("Erreur réseau lors de la récupération de la liste des vus.");
   const watchedItems = await watchedResponse.json(); // Ce sont des UserList[]
 
@@ -58,10 +56,10 @@ export async function getUserById(userId) {
  * @returns {Promise<object>} - L'utilisateur mis à jour.
  */
 export async function addToWatchlist(userId, movieId) {
-  await fetch(`${USER_LIST_BASE_URL}/to_watch`, {
+  await authFetch(`${USER_LIST_BASE_URL}/to_watch`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ userId, movieId, status: 'to_watch' }),
+    body: JSON.stringify({ movieId }),
   });
   return getUserById(userId);
 }
@@ -74,12 +72,12 @@ export async function addToWatchlist(userId, movieId) {
  * @returns {Promise<object>} - L'utilisateur mis à jour.
  */
 export async function removeFromWatchlist(userId, movieId) {
-  const response = await fetch(`${USER_LIST_BASE_URL}/to_watch/${userId}`);
+  const response = await authFetch(`${USER_LIST_BASE_URL}/to_watch`);
   if (!response.ok) throw new Error('Erreur lors de la suppression de la watchlist.');
   const items = await response.json();
   const entry = items.find(item => item.movieId === movieId);
   if (entry) {
-    await fetch(`${USER_LIST_BASE_URL}/${entry.id}`, { method: 'DELETE' });
+    await authFetch(`${USER_LIST_BASE_URL}/${entry.id}`, { method: 'DELETE' });
   }
   return getUserById(userId);
 }
@@ -92,10 +90,10 @@ export async function removeFromWatchlist(userId, movieId) {
  * @returns {Promise<object>} - L'utilisateur mis à jour.
  */
 export async function addToWatched(userId, movieId) {
-  await fetch(`${USER_LIST_BASE_URL}/watched`, {
+  await authFetch(`${USER_LIST_BASE_URL}/watched`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ userId, movieId, status: 'watched' }),
+    body: JSON.stringify({ movieId }),
   });
   return getUserById(userId);
 }
@@ -108,12 +106,12 @@ export async function addToWatched(userId, movieId) {
  * @returns {Promise<object>} - L'utilisateur mis à jour.
  */
 export async function removeFromWatched(userId, movieId) {
-  const response = await fetch(`${USER_LIST_BASE_URL}/watched/${userId}`);
+  const response = await authFetch(`${USER_LIST_BASE_URL}/watched`);
   if (!response.ok) throw new Error('Erreur lors de la suppression de la liste Vus.');
   const items = await response.json();
   const entry = items.find(item => item.movieId === movieId);
   if (entry) {
-    await fetch(`${USER_LIST_BASE_URL}/${entry.id}`, { method: 'DELETE' });
+    await authFetch(`${USER_LIST_BASE_URL}/${entry.id}`, { method: 'DELETE' });
   }
   return getUserById(userId);
 }
@@ -162,14 +160,14 @@ export function registerUser({ username, email, password, confirmPassword, first
 /**
  * Authentifie un utilisateur existant.
  *
- * @param {{ username: string, password: string }} credentials
- * @returns {Promise<object>} - Les données de l'utilisateur (token exclus).
+ * @param {{ email: string, password: string }} credentials
+ * @returns {Promise<object>} - L'utilisateur authentifié sous forme d'objet contenant le token.
  */
-export function authenticate({ username, password }) {
+export function authenticate({ email, password }) {
   return fetch('/api/users/auth', {
     method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ username, password })
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password })
   })
   .then(res => {
     if (res.status === 401) throw new Error('Identifiants invalides');
