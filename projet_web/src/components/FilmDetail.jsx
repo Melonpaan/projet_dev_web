@@ -89,69 +89,78 @@ export default function FilmDetail() {
   // 5) Rendu principal
   return (
     <div className="film-detail">
-      <Link to="/" className="back-link">
-        ← Retour à l'accueil
-      </Link>
-
-      <h2>{movie.title}</h2>
-      {movie.releaseDate && (
-        <p className="release-date">
-          Sorti le{" "}
-          {new Date(movie.releaseDate).toLocaleDateString("fr-FR", {
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-          })}
-        </p>
-      )}
-      <img
-        src={movie.posterPath}
-        alt={`Affiche de ${movie.title}`}
-        className="detail-poster"
-      />
-
-      {toggleError && <p className="error">{toggleError}</p>}
-      {message     && <p className="info">{message}</p>}
-
-      {isAuthenticated ? (
-        <button
-          onClick={handleToggle}
-          disabled={toggleLoading}
-          className="watchlist-btn"
-        >
-          {toggleLoading
-            ? "…"
-            : isInWatchlist
-            ? "Retirer de ma watchlist"
-            : "Ajouter à ma watchlist"}
-        </button>
-      ) : (
-        <Link to="/login" className="watchlist-login-prompt">
-          Connectez-vous pour gérer votre liste
-        </Link>
-      )}
-
-      <div className="detail-content">
-        <div className="detail-main">
-          {movie.overview  && <Synopsis text={movie.overview} />}
-          {movie.youtubeUrl && <Trailer url={movie.youtubeUrl} />}
+      {/* Image de fond */}
+      {movie.backdropPath && (
+        <div className="backdrop-wrapper">
+          <img src={movie.backdropPath} alt="Backdrop" className="backdrop-image" />
         </div>
-        <aside className="detail-sidebar">
-          <FilmInfo
-            title={movie.title}
-            releaseDate={movie.releaseDate}
-            runtime={movie.runtime}
-            voteAverageTopRated={movie.voteAverageTopRated}
-            genres={movie.genres}
-            revenue={movie.revenue}
-            overview={movie.overview}
-            youtubeUrl={movie.youtubeUrl}
-          />
-        </aside>
-      </div>
+      )}
+      {/* Contenu principal avec fond blanc */}
+      <div className="film-detail-content">
+        <Link to="/" className="back-link">
+          ← Retour à l'accueil
+        </Link>
 
-      {/* Section des commentaires */}
-      <CommentsSection movieId={movie.id} />
+        <h2>{movie.title}</h2>
+        {movie.releaseDate && (
+          <p className="release-date">
+            Sorti le{" "}
+            {new Date(movie.releaseDate).toLocaleDateString("fr-FR", {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            })}
+          </p>
+        )}
+        <img
+          src={movie.posterPath}
+          alt={`Affiche de ${movie.title}`}
+          className="detail-poster"
+        />
+
+        {toggleError && <p className="error">{toggleError}</p>}
+        {message     && <p className="info">{message}</p>}
+
+        {isAuthenticated ? (
+          <button
+            onClick={handleToggle}
+            disabled={toggleLoading}
+            className="watchlist-btn"
+          >
+            {toggleLoading
+              ? "…"
+              : isInWatchlist
+              ? "Retirer de ma watchlist"
+              : "Ajouter à ma watchlist"}
+          </button>
+        ) : (
+          <Link to="/login" className="watchlist-login-prompt">
+            Connectez-vous pour gérer votre liste
+          </Link>
+        )}
+
+        <div className="detail-content">
+          <div className="detail-main">
+            {movie.overview  && <Synopsis text={movie.overview} />}
+            {movie.youtubeUrl && <Trailer url={movie.youtubeUrl} />}
+          </div>
+          <aside className="detail-sidebar">
+            <FilmInfo
+              title={movie.title}
+              releaseDate={movie.releaseDate}
+              runtime={movie.runtime}
+              voteAverageTopRated={movie.voteAverageTopRated}
+              genres={movie.genres}
+              revenue={movie.revenue}
+              overview={movie.overview}
+              youtubeUrl={movie.youtubeUrl}
+            />
+          </aside>
+        </div>
+
+        {/* Section des commentaires */}
+        <CommentsSection movieId={movie.id} />
+      </div>
     </div>
   );
 }
