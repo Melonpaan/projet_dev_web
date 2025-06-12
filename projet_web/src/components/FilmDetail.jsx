@@ -89,14 +89,14 @@ export default function FilmDetail() {
   // 5) Rendu principal
   return (
     <div className="film-detail">
-      {/* Image de fond */}
-      {movie.backdropPath && (
-        <div className="backdrop-wrapper">
-          <img src={movie.backdropPath} alt="Backdrop" className="backdrop-image" />
-        </div>
-      )}
       {/* Contenu principal avec fond blanc */}
       <div className="film-detail-content">
+        {/* Image de fond */}
+        {movie.backdropPath && (
+          <div className="backdrop-wrapper">
+            <img src={movie.backdropPath} alt="Backdrop" className="backdrop-image" />
+          </div>
+        )}
         <Link to="/" className="back-link">
           ← Retour à l'accueil
         </Link>
