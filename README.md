@@ -9,6 +9,7 @@ Ce dépôt contient :
 
 - .NET 9 SDK (https://dotnet.microsoft.com/)  
 - Node.js 16.x ou supérieur (https://nodejs.org/)  
+- [npm](https://www.npmjs.com/) (inclus avec Node.js) ou [yarn](https://yarnpkg.com/)
 - MySQL (ou MariaDB)  
 - Un éditeur/IDE (VS Code, Rider, Visual Studio…)
 
@@ -35,6 +36,16 @@ dotnet run
 ```
 
 L'API écoute par défaut sur http://localhost:5165 (cf. `launchSettings.json`).  
+
+## Synchronisation des données depuis TMDB
+
+Avant d'utiliser l'application, il est recommandé de remplir la base de données avec des films depuis l'API TMDB. Pour ce faire, exécutez la requête suivante une fois que l'application est lancée :
+
+```
+POST http://localhost:5165/api/movies/sync-from-tmdb?pages=2
+```
+
+Cette requête importera 2 pages de films depuis TMDB dans votre base de données locale. Vous pouvez ajuster le nombre de pages selon vos besoins.
 
 ## Lancement du frontend
 
