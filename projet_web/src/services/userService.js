@@ -124,8 +124,20 @@ export async function removeFromWatched(userId, movieId) {
  * @returns {Promise<object>} - L'utilisateur mis à jour.
  */
 export async function moveToWatched(userId, movieId) {
-  await addToWatched(userId, movieId);
-  return removeFromWatchlist(userId, movieId);
+  // Récupère l'entrée existante dans "À voir"
+  const listRes = await authFetch(`${USER_LIST_BASE_URL}/to_watch`);
+  if (!listRes.ok) throw new Error("Erreur réseau lors de la récupération de la watchlist.");
+  const items = await listRes.json();
+  const entry = items.find(item => item.movieId === movieId);
+  if (!entry) throw new Error("Film non trouvé dans la liste à voir.");
+  // Met à jour le statut via PUT
+  const updateRes = await authFetch(`${USER_LIST_BASE_URL}/${entry.id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ status: 'watched' }),
+  });
+  if (!updateRes.ok) throw new Error("Erreur lors de la mise à jour du statut.");
+  return getUserById(userId);
 }
 
 /**
@@ -136,8 +148,20 @@ export async function moveToWatched(userId, movieId) {
  * @returns {Promise<object>} - L'utilisateur mis à jour.
  */
 export async function moveToWatchlist(userId, movieId) {
-  await addToWatchlist(userId, movieId);
-  return removeFromWatched(userId, movieId);
+  // Récupère l'entrée existante dans "Vus"
+  const listRes = await authFetch(`${USER_LIST_BASE_URL}/watched`);
+  if (!listRes.ok) throw new Error("Erreur réseau lors de la récupération de la liste des vus.");
+  const items = await listRes.json();
+  const entry = items.find(item => item.movieId === movieId);
+  if (!entry) throw new Error("Film non trouvé dans la liste des vus.");
+  // Met à jour le statut via PUT
+  const updateRes = await authFetch(`${USER_LIST_BASE_URL}/${entry.id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ status: 'to_watch' }),
+  });
+  if (!updateRes.ok) throw new Error("Erreur lors de la mise à jour du statut.");
+  return getUserById(userId);
 }
 
 /**
