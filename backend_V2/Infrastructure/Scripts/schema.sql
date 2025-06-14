@@ -51,9 +51,11 @@ CREATE TABLE `user_list` (
     `movie_id` int NOT NULL,
     `status` varchar(10) DEFAULT NULL,
     PRIMARY KEY (`id`),
-    FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-    FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+    UNIQUE KEY `unique_user_movie` (`user_id`,`movie_id`),
+    KEY `movie_id` (`movie_id`),
+    CONSTRAINT `user_list_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+    CONSTRAINT `user_list_ibfk_2` FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `comments` (
     `id` bigint unsigned NOT NULL AUTO_INCREMENT,
